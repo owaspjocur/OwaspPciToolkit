@@ -18,18 +18,12 @@ namespace OwaspPciToolkit
             DisplayGrid();
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void DisplayGrid()
         {
             CardHolderQuestions listQ = new CardHolderQuestions();
             List<string[]> QuestionsC = listQ.chdQuestions().ToList();
             DataTable table = ConvertListToDataTable(QuestionsC);
-            BSchd.DataSource = table;            
+            BSchd.DataSource = table;
             dataGridView1.DataSource = BSchd;
             dataGridView1.AutoResizeColumns();
 
@@ -42,7 +36,7 @@ namespace OwaspPciToolkit
             dataGridView1.Columns.Add(CreateCheckBox());
 
 
-           
+
         }
 
         static DataTable ConvertListToDataTable(List<string[]> list)
@@ -75,13 +69,6 @@ namespace OwaspPciToolkit
             return table;
         }
 
-        DataGridViewComboBoxColumn CreateComboBoxWithEnums()
-        {
-            DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
-            combo.DataPropertyName = "Title";
-            combo.Name = "Title";
-            return combo;
-        }
 
         DataGridViewCheckBoxColumn CreateCheckBox()
         {
@@ -93,9 +80,50 @@ namespace OwaspPciToolkit
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int TotalPoints = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                
+                    DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                    if (chk.Value == chk.FalseValue || chk.Value == null)
+                    {
+                        string text =
+                            "PCI-DSS Scope Analysis" + Environment.NewLine +
+                            "Application Name:" + textBox1.Text.ToString() + Environment.NewLine +
+                            "Programming Language" + Environment.NewLine +
+                            "The Web Application does not fall into the main PCI-DSS Scope" + Environment.NewLine +
+                            "It does not" + Environment.NewLine;
+                        // WriteAllText creates a file, writes the specified string to the file, 
+                        // and then closes the file.
+                        System.IO.File.WriteAllText(@"C:\Users\johanna\Documents\OWASP\WriteText.txt", text);
+                        TotalPoints -= 1;
 
-        }
+                    }
+                    else
+                    {
+                        // Example #2: Write one string to a text file. 
+                        string text = "Application falls into the PCI-DSS Scope " +
+                                       "a class defines the data and behavior of the data type. ";
+                        // WriteAllText creates a file, writes the specified string to the file, 
+                        // and then closes the file.
+                        System.IO.File.WriteAllText(@"C:\Users\johanna\Documents\OWASP\WriteText.txt", text);
+
+                        TotalPoints += 1;
+
+                    }
+
+                    if (TotalPoints <= 0)
+                    {
+                        string text = "This application does not faal into the PCI-Scope";
+                        System.IO.File.WriteAllText(@"C:\Users\johanna\Documents\OWASP\WriteText.txt", text); }
+                    else
+                    { string text = "This application falls into the PCI-Scope";
+                        System.IO.File.WriteAllText(@"C:\Users\johanna\Documents\OWASP\WriteText.txt", text); }
+                }
 
 
+                dataGridView1.EndEdit();
+         
+            }
     }
 }
