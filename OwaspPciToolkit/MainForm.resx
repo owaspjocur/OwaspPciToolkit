@@ -121,7 +121,7 @@
   <data name="pictureBox1.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAmoAAACOCAYAAACBmCTCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
         oQAAJYpJREFUeF7tnb+vb7tRxfMXIVEjUUeiRqJGoo/SI3roKBB0kaKICgmkdAgKKqRXpENp6JKGjlR0
         l6yHHXx9Z+xZ9tjfX+sjLSk5b9vb2x6Pl733uecHQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQ
         QgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQ
@@ -288,7 +288,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAmoAAACOCAYAAACBmCTCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
         oQAAJYpJREFUeF7tnb+vb7tRxfMXIVEjUUeiRqJGoo/SI3roKBB0kaKICgmkdAgKKqRXpENp6JKGjlR0
         l6yHHXx9Z+xZ9tjfX+sjLSk5b9vb2x6Pl733uecHQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQ
         QgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQ
@@ -455,7 +455,7 @@
   <data name="pictureBox1.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAmoAAACOCAYAAACBmCTCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
+        YQUAAAAJcEhZcwAADr0AAA69AUf7kK0AAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
         oQAAJYpJREFUeF7tnb+vb7tRxfMXIVEjUUeiRqJGoo/SI3roKBB0kaKICgmkdAgKKqRXpENp6JKGjlR0
         l6yHHXx9Z+xZ9tjfX+sjLSk5b9vb2x6Pl733uecHQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQ
         QgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQ
@@ -624,5 +624,11 @@
   </metadata>
   <metadata name="BSchd.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>142, 17</value>
+  </metadata>
+  <metadata name="BSDev.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>251, 17</value>
+  </metadata>
+  <metadata name="BSTest.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>344, 17</value>
   </metadata>
 </root>

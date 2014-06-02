@@ -12,14 +12,15 @@ namespace OwaspPciToolkit
 
         public List<string[]> chdQuestions()
         {
-        
+            string line;
         List<string[]> chdListQuestions = new List<string[]>();
         // Read each line of the file into a string array. Each element 
-        // of the array is one line of the file. 
-        var lines = System.IO.File.ReadLines(@"questionsCHD.txt");
+        // of the array is one line of the file.
+        System.IO.StreamReader file =
+        new System.IO.StreamReader(@"questionsCHD.txt");
 
             // Display the file contents by using a foreach loop. 
-            foreach(var line in lines)
+          while ((line = file.ReadLine()) != null)
             { 
                 chdListQuestions.Add(new string[] {line});
             }     

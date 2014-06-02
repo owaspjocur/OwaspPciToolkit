@@ -1,0 +1,12 @@
+Do you have a process for keeping all your framework components up to date?
+Is there a process to identify security vulnerabilities in the frameworks used?
+Is the application been developed using industry standards and best practices such as OWASP, SANS or CERT?
+Does the development team use or incorporate security during the developement life-cycle?
+Does the developer team get proper training in OWASP top ten vulnerabilities?
+Do developers use a code review guidelines to implement proper security into the application?
+Do you use production data during development?(example restore a production database)
+Do you use production credentials in development environment?
+Are the change control process and procedures when changes are done in the code?
+Is the development environment separated from testing and production environment? 
+Do developers have access to production environment?
+Are PAN's or any credit card data used in development environment?

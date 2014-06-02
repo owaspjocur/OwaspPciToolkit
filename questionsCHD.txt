@@ -4,9 +4,5 @@ Are full credit card numbers or the credit card account numbers displayed to the
 Are Card Holder name, PAN, Expiration date or service code stored in the the database or any form of data storage?
 Is any of this data stored in clear text long term, including backups of this data? 
 Is any of this data transmitted in clear text, internally or externally? Internet traffic is especially dangerous.
-Does the web application use secure socket layer to secure transmission?
-Are any old / weak cryptographic algorithms used?
-Are any browser security directives or headers missing when sensitive data is provided by / sent to the browser? 
 Do you share any card holder data with other applications or web services in the same network?
 Does the application have any form of debug log system?
-Is there any Card holder data saved in log system files of the application?

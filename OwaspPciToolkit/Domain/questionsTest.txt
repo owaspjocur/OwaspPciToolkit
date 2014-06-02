@@ -1,0 +1,8 @@
+Is the test environment separated from development and production environment?
+Do administrators of the test environment have credentaials to production environment?
+Is the test environment in a DMZ zone and isolated properly from the production environment?
+Do the testers use test data exclusively during the testing of the application?
+Do the testers use production data such as real PAN's, CVV or names?
+Is functionality tests carried on to verify that the changes do not impact the security of the system?
+Are the backout procedures in place?
+Are the penetration tests executed to verify any potential security vulnerability in the application?
