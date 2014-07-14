@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Domain\AnalyzeCHD.cs" />
     <Compile Include="Domain\CardHolderQuestions.cs" />
+    <Compile Include="Domain\Clarifications.cs" />
     <Compile Include="Domain\DevelopQuestions.cs" />
     <Compile Include="Domain\testQuestions.cs" />
     <Compile Include="MainForm.cs">

@@ -44,15 +44,16 @@
             this.BSDev = new System.Windows.Forms.BindingSource(this.components);
             this.BSTest = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BSClarifications = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BSchd)).BeginInit();
@@ -65,6 +66,7 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BSClarifications)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -147,20 +149,20 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1178, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1178, 28);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(40, 22);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(48, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // tabPage3
@@ -175,10 +177,19 @@
             this.tabPage3.Text = "Testing";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1004, 414);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(121, 37);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Analyze Test";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(21, 17);
+            this.dataGridView3.Location = new System.Drawing.Point(18, 24);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.Size = new System.Drawing.Size(1104, 376);
@@ -196,15 +207,6 @@
             this.tabPage2.Text = "Development";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(18, 24);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1104, 376);
-            this.dataGridView2.TabIndex = 2;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(942, 421);
@@ -213,6 +215,15 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Analyze Development";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(18, 24);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(1104, 376);
+            this.dataGridView2.TabIndex = 2;
             // 
             // tabPage1
             // 
@@ -226,6 +237,15 @@
             this.tabPage1.Text = "Card Holder Data";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(17, 24);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(1104, 376);
+            this.dataGridView1.TabIndex = 1;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(964, 425);
@@ -235,15 +255,6 @@
             this.button1.Text = "Analyze CHD";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 24);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1104, 376);
-            this.dataGridView1.TabIndex = 1;
             // 
             // tabControl1
             // 
@@ -258,15 +269,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1154, 511);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Tag = "Card Holder Data";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(1004, 414);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 37);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Analyze Test";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -284,7 +286,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Owasp PCI Toolkit";
+            this.Text = "Alpha Version";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -298,6 +300,7 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.BSClarifications)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,6 +331,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button button3;
+        public System.Windows.Forms.BindingSource BSClarifications;
     }
 }
 
