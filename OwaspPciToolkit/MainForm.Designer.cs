@@ -100,7 +100,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(194, 47);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 22);
+            this.textBox1.Size = new System.Drawing.Size(336, 22);
             this.textBox1.TabIndex = 4;
             // 
             // comboBox1
@@ -113,7 +113,7 @@
             "Other"});
             this.comboBox1.Location = new System.Drawing.Point(194, 73);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(186, 24);
+            this.comboBox1.Size = new System.Drawing.Size(336, 24);
             this.comboBox1.TabIndex = 5;
             // 
             // comboBox2
@@ -127,7 +127,7 @@
             ""});
             this.comboBox2.Location = new System.Drawing.Point(194, 103);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(186, 24);
+            this.comboBox2.Size = new System.Drawing.Size(336, 24);
             this.comboBox2.TabIndex = 6;
             // 
             // pictureBox1
@@ -135,7 +135,7 @@
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(419, 29);
+            this.pictureBox1.Location = new System.Drawing.Point(610, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(618, 142);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -149,7 +149,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1178, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1261, 28);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -232,7 +232,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1146, 482);
+            this.tabPage1.Size = new System.Drawing.Size(1206, 482);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Card Holder Data";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -243,8 +243,10 @@
             this.dataGridView1.Location = new System.Drawing.Point(17, 24);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1104, 376);
+            this.dataGridView1.Size = new System.Drawing.Size(1169, 376);
             this.dataGridView1.TabIndex = 1;
+           
+
             // 
             // button1
             // 
@@ -266,7 +268,7 @@
             this.tabControl1.Location = new System.Drawing.Point(16, 196);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1154, 511);
+            this.tabControl1.Size = new System.Drawing.Size(1214, 511);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Tag = "Card Holder Data";
             // 
@@ -274,7 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 719);
+            this.ClientSize = new System.Drawing.Size(1261, 731);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
