@@ -16,8 +16,10 @@ namespace OwaspPciToolkit
         {
             InitializeComponent();
             DisplayGrid();
-            //DisplayGridDev();
-            //DisplayGridTest();
+            DisplayGridDev();
+            DisplayGridTest();
+            button2.Enabled = false;
+            button3.Enabled = false;
         }
 
         private void DisplayGrid()
@@ -201,7 +203,8 @@ namespace OwaspPciToolkit
                             "-Specific retention requirements for cardholder data " + Environment.NewLine +
                             "-A quarterly process for identifying and securely deleting stored cardholder data that exceeds defined retention." +
                             "3.2 Do not store sensitive authentication data after authorization (even if encrypted). If sensitive authentication" + Environment.NewLine +
-                            "data is received, render all data unrecoverable upon completion of the authorization process." + Environment.NewLine +
+                            "data is received, render all data unrecoverable upon completion of the authorization process." + Environment.NewLine +
+
                             Environment.NewLine ;
                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text);
 
@@ -348,7 +351,7 @@ namespace OwaspPciToolkit
                 bool chekedNo = ((bool)(row.Cells["chkNo"].EditedFormattedValue));
                 if (cheked && chekedNo)
                 {
-                    MessageBox.Show("You cannot select YES and NO in the same row, please");
+                    MessageBox.Show("You cannot select YES and NO in the same row, please check one only");
                     return false;
 
                 }
