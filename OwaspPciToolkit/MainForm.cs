@@ -18,8 +18,11 @@ namespace OwaspPciToolkit
             DisplayGrid();
             DisplayGridDev();
             DisplayGridTest();
+            CreateButton();
+
             button2.Enabled = false;
             button3.Enabled = false;
+            dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellContentClick);
         }
 
         private void DisplayGrid()
@@ -29,10 +32,10 @@ namespace OwaspPciToolkit
             this.dataGridView1.DefaultCellStyle.WrapMode =DataGridViewTriState.True;
             dataGridView1.ColumnCount = 2;
             dataGridView1.Columns[0].Name = "Question";
-            dataGridView1.Columns[0].Width = 600;
-            dataGridView1.Columns[1].Width = 350;
+            dataGridView1.Columns[0].Width = 500;
+            dataGridView1.Columns[1].Width = 300;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.Columns[1].Name = "Tips";
+            dataGridView1.Columns[1].Name = "Quick Tips";
             dataGridView1.RowsDefaultCellStyle.BackColor = Color.PapayaWhip;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -59,8 +62,8 @@ namespace OwaspPciToolkit
             dataGridView1.Rows.Add(row);
             row = new string[] { "Do you share any card holder data with other applications or web services in the same network?", "Use Wireshark to sniff transmission within the network" };
             dataGridView1.Rows.Add(row);
-            row = new string[] { "Does the application have any form of debug log system?", "Do a search on the Web server on the folders containing the logs" };
-            dataGridView1.Rows.Add(row);
+            //row = new string[] { "Does the application have any form of debug log system?", "Do a search on the Web server on the folders containing the logs" };
+            //dataGridView1.Rows.Add(row);
             DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
             dataGridView1.Columns.Add(chk);
             chk.HeaderText = "YES";
@@ -144,6 +147,130 @@ namespace OwaspPciToolkit
         
         }
 
+        private void CreateButton()
+        {
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Name = "ButtonColumn";
+            btn.HeaderText = "TIPS";
+            btn.DataPropertyName = "c2";
+            //DO NOT SET THE UseColumnTextForButtonValue PROPERTY
+            //btn.UseColumnTextForButtonValue = true;
+            this.dataGridView1.Columns.Add(btn);
+
+
+            //You can change the button text in a specify cell by changing the
+            //value of that cell directly.
+            this.dataGridView1["ButtonColumn", 0].Value = "TIP 1";
+            this.dataGridView1["ButtonColumn", 1].Value = "TIP 2";
+            this.dataGridView1["ButtonColumn", 2].Value = "TIP 3";
+            this.dataGridView1["ButtonColumn", 3].Value = "TIP 4";
+            this.dataGridView1["ButtonColumn", 4].Value = "TIP 5";
+            this.dataGridView1["ButtonColumn", 5].Value = "TIP 6";
+            this.dataGridView1["ButtonColumn", 6].Value = "TIP 7";
+        }
+
+        void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //TIP 1
+            if (e.ColumnIndex == 4 && e.RowIndex == 0)
+            {
+                MessageBox.Show("First of all, you must confirm that the application stores,transmits or process Card Holder Data"
+                    +"This can be done using the some of following steps: "+
+                    "Open the source code-solution of the application in its corresponding IDE, example: "+
+                     "If the application is written in .NET, open the solution in Visual Studio(2013) "+
+                    "On the Bar Menu, Go to Edit==>Find & Replace==> Find in Files "+
+                    "Be sure that the dropbox textbox is set to 'Look in:Entire Solution'"+
+                    "Check the 'Find options' group click 'Use Regular Expressions "+
+                    "Write the following Regular Expression to look for Credit Card Numbers, example VISA "+
+                    "Visa: ^4[0-9]{12}(?:[0-9]{3})?$ "+ "For more regular expressions examples: "+
+                    "http://www.regular-expressions.info/creditcard.html."+
+                    " You can look through these kind of search options into the source code "+
+                    " On a Database, execute a SQL query for example "+
+                    "http://www.codeproject.com/Articles/42764/Regular-Expressions-in-MS-SQL-Server-2005-2008 "+
+                    " An effective way is to use ASV approved vendors, howeveer this is a more costly option "+
+                    " https://www.pcisecuritystandards.org/approved_companies_providers/approved_scanning_vendors.php",
+                    "Close Window", MessageBoxButtons.OK);
+                
+            }
+            //TIP 2
+            if (e.ColumnIndex == 4 && e.RowIndex == 1)
+            {
+                MessageBox.Show(
+                        "You can test this easily by"+
+                        " checking that the application forces users to login using credentials. "+
+                        "Go to the home page of the web app, are you forced to login or not? "+
+                        "Do a quick source code search: "+
+                         "Open the source code-solution of the application in its corresponding IDE, example: "+
+                         "If the application is written in .NET, open the solution in Visual Studio(2013) "+
+                        "On the Bar Menu, Go to Edit==>Find & Replace==> Find in Files "+
+                         "Be sure that the dropbox textbox is set to 'Look in:Entire Solution' " +
+                        "In the textbox 'Find What' write words such as 'username','login','password' "+
+                "You must also be sure that no essential information is disclosed by the application because it was not properly secured "+
+                "Check OWASP ZAP tool to execute a quick attack: https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project ",
+                        "Close Window", MessageBoxButtons.OK);
+            
+            }
+            //TIP 3
+            if (e.ColumnIndex == 4 && e.RowIndex == 2)
+            {
+                MessageBox.Show(
+                " On a Database, execute a SQL query for example "+
+                "http://www.codeproject.com/Articles/42764/Regular-Expressions-in-MS-SQL-Server-2005-2008 "+
+                "Don't forget to look into the LOG files. Make sure that you understand properly the functionalities of the application "+
+                "especially how it generates its logs and pay attention on where are these saved"+
+                "Look into the source code for Log functionalities such as :"+
+                "log4net  in C#, or JAVA. More info about logging: http://logging.apache.org/"+
+                "https://www.owasp.org/index.php/Error_Handling,_Auditing_and_Logging",
+                        "Close Window", MessageBoxButtons.OK);
+
+            }
+            //TIP 4
+            if (e.ColumnIndex == 4 && e.RowIndex == 3)
+            {
+                MessageBox.Show(
+                " On a Database, execute a SQL query looking for user or customer accounts " +
+                " Ask a to log in in a test environment and log into a dummy account. Whta do you see? are any full PAN's "+
+                "disclosed to the user? Any credit cards fully disclosed in the web interface?"+
+                "Use also the same techniques on TIPS 3",
+                        "Close Window", MessageBoxButtons.OK);
+
+            }
+
+            //TIP 5
+            if (e.ColumnIndex == 4 && e.RowIndex == 4)
+            {
+                MessageBox.Show(
+                " Use a combination of TIPS 2, 3 and 4. "+
+                "Read more about this on: "+
+                "https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure",
+                        "Close Window", MessageBoxButtons.OK);
+
+            }
+            //TIP 6
+            if (e.ColumnIndex == 4 && e.RowIndex == 5)
+            {
+                MessageBox.Show(
+                " Use the techniques described here: " +
+                "https://www.owasp.org/index.php/Testing_for_Sensitive_information_sent_via_unencrypted_channels_(OTG-CRYPST-007)",
+                        "Close Window", MessageBoxButtons.OK);
+
+            }
+
+            //TIP 7
+            if (e.ColumnIndex == 4 && e.RowIndex == 6)
+            {
+                MessageBox.Show(
+                " It's essential to understand the architecture of the application. Request a the CARD HOLDER DATA diagram " +
+                "If the organization does not have one, it's essetial to construct one and understand how is the CHD information moving"+
+                "around the network, Example: https://www.fishnetsecurity.com/sites/default/files/Blogs/john-clark-image3.jpg",
+                        "Close Window", MessageBoxButtons.OK);
+
+            }
+
+            //
+        }
+
       
         private void button1_Click(object sender, EventArgs e)
         {
@@ -182,7 +309,7 @@ namespace OwaspPciToolkit
            if (dataGridView1.Rows[0].Cells[2].Value.Equals(true))
            {
                text =
-                               "The Web Application does not fall directly into the main PCI-DSS Scopeb because it does not trasmit, process or store card holder data" + Environment.NewLine;
+                               "The Web Application does not fall directly into the main PCI-DSS Scope because it does not trasmit, process or store card holder data" + Environment.NewLine;
                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text);
 
            }
@@ -214,7 +341,7 @@ namespace OwaspPciToolkit
             {
 
                 text1 = "Authentication" + Environment.NewLine +
-                   "HTTP authentication should be implemented over TLS if the application has sensitive information" + Environment.NewLine +
+                   "HTTP authentication should be implemented over SSL/TLS if the application has sensitive information" + Environment.NewLine +
                    "Please check your application is using SSL (HTTPS) process to verify that HTTPS protocol has been implemented" + Environment.NewLine +
                    "Read the following guidelines regarding secure authentication:" + Environment.NewLine +
                     "https://www.owasp.org/index.php/Authentication_Cheat_Sheet" + Environment.NewLine +
