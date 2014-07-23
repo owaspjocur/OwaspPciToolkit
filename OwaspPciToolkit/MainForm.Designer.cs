@@ -54,6 +54,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.BSClarifications = new System.Windows.Forms.BindingSource(this.components);
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BSchd)).BeginInit();
@@ -124,7 +125,7 @@
             "Corporate Website",
             "E-commerce site",
             "Marketing Website",
-            ""});
+            "Other"});
             this.comboBox2.Location = new System.Drawing.Point(194, 103);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(336, 24);
@@ -172,7 +173,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1146, 482);
+            this.tabPage3.Size = new System.Drawing.Size(1206, 482);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Testing";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -202,7 +203,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1146, 482);
+            this.tabPage2.Size = new System.Drawing.Size(1206, 482);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Development";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -227,6 +228,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -245,17 +247,14 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1169, 376);
             this.dataGridView1.TabIndex = 1;
-            
-           
-
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(964, 425);
+            this.button1.Location = new System.Drawing.Point(1029, 425);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(157, 38);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Analyze CHD";
+            this.button1.Text = "Analyze CHD(text file)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -272,6 +271,16 @@
             this.tabControl1.Size = new System.Drawing.Size(1214, 511);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Tag = "Card Holder Data";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(859, 425);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(148, 38);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Create PDF report";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
             // 
@@ -335,6 +344,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button button3;
         public System.Windows.Forms.BindingSource BSClarifications;
+        private System.Windows.Forms.Button button4;
     }
 }
 

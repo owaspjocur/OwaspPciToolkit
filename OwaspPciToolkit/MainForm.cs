@@ -2,18 +2,43 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PdfSharp;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
+using System.IO;
+using MigraDoc;
+using MigraDoc.Rendering;
+using MigraDoc.RtfRendering;
+using MigraDoc.DocumentObjectModel;
+
 
 namespace OwaspPciToolkit
 {
     public partial class MainForm : Form
     {
+        #region public variables
+        string texthead = null;
+        string textL = null;
+        string text = null;
+        string text1 = null;
+        string text2 = null;
+        string text3 = null;
+        string text4 = null;
+        string text5 = null;
+        string text6 = null;
+        string text7 = null;
+        #endregion
+
         public MainForm()
         {
+           
             InitializeComponent();
             DisplayGrid();
             DisplayGridDev();
@@ -22,7 +47,32 @@ namespace OwaspPciToolkit
 
             button2.Enabled = false;
             button3.Enabled = false;
+            //custom events
             dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellContentClick);
+
+            //doc printing PDF
+            #region print
+            DateTime now = DateTime.Now;
+            string filename = "MixMigraDocAndPdfSharp.pdf";
+            filename = Guid.NewGuid().ToString("D").ToUpper() + ".pdf";
+            PdfDocument document = new PdfDocument();
+            document.Info.Title = "PDFsharp XGraphic Sample";
+            document.Info.Author = "Stefan Lange";
+            document.Info.Subject = "Created with code snippets that show the use of graphical functions";
+            document.Info.Keywords = "PDFsharp, XGraphics";
+
+            SamplePage1(document);
+
+            //SamplePage2(document);
+
+            Debug.WriteLine("seconds=" + (DateTime.Now - now).TotalSeconds.ToString());
+
+            // Save the document...
+            document.Save(filename);
+            // ...and start a viewer
+            Process.Start(filename);
+            #endregion
+
         }
 
         private void DisplayGrid()
@@ -36,11 +86,11 @@ namespace OwaspPciToolkit
             dataGridView1.Columns[1].Width = 300;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.Columns[1].Name = "Quick Tips";
-            dataGridView1.RowsDefaultCellStyle.BackColor = Color.PapayaWhip;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
+            dataGridView1.RowsDefaultCellStyle.BackColor = System.Drawing.Color.PapayaWhip;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Red;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -73,7 +123,7 @@ namespace OwaspPciToolkit
             chkNo.HeaderText = "NO";
             chkNo.Name = "chkNo";
             #endregion
-            //dataGridView1.Rows[2].Cells[3].Value = true;
+
         }
 
         private void DisplayGridDev()
@@ -190,7 +240,7 @@ namespace OwaspPciToolkit
                     "http://www.codeproject.com/Articles/42764/Regular-Expressions-in-MS-SQL-Server-2005-2008 "+
                     " An effective way is to use ASV approved vendors, howeveer this is a more costly option "+
                     " https://www.pcisecuritystandards.org/approved_companies_providers/approved_scanning_vendors.php",
-                    "Close Window", MessageBoxButtons.OK);
+                    "OWASP PCI TIPS", MessageBoxButtons.OK);
                 
             }
             //TIP 2
@@ -208,7 +258,7 @@ namespace OwaspPciToolkit
                         "In the textbox 'Find What' write words such as 'username','login','password' "+
                 "You must also be sure that no essential information is disclosed by the application because it was not properly secured "+
                 "Check OWASP ZAP tool to execute a quick attack: https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project ",
-                        "Close Window", MessageBoxButtons.OK);
+                        "OWASP PCI TIPS", MessageBoxButtons.OK);
             
             }
             //TIP 3
@@ -222,7 +272,7 @@ namespace OwaspPciToolkit
                 "Look into the source code for Log functionalities such as :"+
                 "log4net  in C#, or JAVA. More info about logging: http://logging.apache.org/"+
                 "https://www.owasp.org/index.php/Error_Handling,_Auditing_and_Logging",
-                        "Close Window", MessageBoxButtons.OK);
+                        "OWASP PCI TIPS", MessageBoxButtons.OK);
 
             }
             //TIP 4
@@ -233,7 +283,7 @@ namespace OwaspPciToolkit
                 " Ask a to log in in a test environment and log into a dummy account. Whta do you see? are any full PAN's "+
                 "disclosed to the user? Any credit cards fully disclosed in the web interface?"+
                 "Use also the same techniques on TIPS 3",
-                        "Close Window", MessageBoxButtons.OK);
+                        "OWASP PCI TIPS", MessageBoxButtons.OK);
 
             }
 
@@ -244,7 +294,7 @@ namespace OwaspPciToolkit
                 " Use a combination of TIPS 2, 3 and 4. "+
                 "Read more about this on: "+
                 "https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure",
-                        "Close Window", MessageBoxButtons.OK);
+                        "OWASP PCI TIPS", MessageBoxButtons.OK);
 
             }
             //TIP 6
@@ -253,7 +303,7 @@ namespace OwaspPciToolkit
                 MessageBox.Show(
                 " Use the techniques described here: " +
                 "https://www.owasp.org/index.php/Testing_for_Sensitive_information_sent_via_unencrypted_channels_(OTG-CRYPST-007)",
-                        "Close Window", MessageBoxButtons.OK);
+                        "OWASP PCI TIPS", MessageBoxButtons.OK);
 
             }
 
@@ -264,14 +314,13 @@ namespace OwaspPciToolkit
                 " It's essential to understand the architecture of the application. Request a the CARD HOLDER DATA diagram " +
                 "If the organization does not have one, it's essetial to construct one and understand how is the CHD information moving"+
                 "around the network, Example: https://www.fishnetsecurity.com/sites/default/files/Blogs/john-clark-image3.jpg",
-                        "Close Window", MessageBoxButtons.OK);
+                        "OWASP PCI TIPS", MessageBoxButtons.OK);
 
             }
 
             //
         }
-
-      
+     
         private void button1_Click(object sender, EventArgs e)
         {
             if (ValidateAppName().Equals(true))
@@ -284,175 +333,20 @@ namespace OwaspPciToolkit
            };
 
            #region Output text
-            string text = null;
-            string text1 = null;
-            string text2 = null;
-            string text3 = null;
-            string text4 = null;
-            string text5 = null;
-            string text6 = null;
-            string text7 = null;
+           OutPutCHDAnalysis();
 
-            string texthead = "Application Name:" + textBox1.Text.ToString() + Environment.NewLine +
-                              "Programming Language:" + comboBox1.Text.ToString() + Environment.NewLine + Environment.NewLine +
-                              "Card Holder Data - requirements regarding PCI-DSS" + Environment.NewLine +
-                              "In order to verify the veracity of your answers regarding these questions, we strongly recommend the following steps:" + Environment.NewLine +
-                              "The application should be properly tested against Security vulnerabilities as described in the OWASP top ten" + Environment.NewLine +
-                              "It is recommended by the Security Council to use ASV(Approved Scanning Vendors) scanning tools" + Environment.NewLine +
-                              "Optional tools recommended here are : Wireshark,Nessus, OWASP ZAP, FindBugs, and using the IDE features to search on source code" + Environment.NewLine +
-                              "The most difficult part of the test is to verify that the application is indeed storing, trasmitting or process CHD"+ Environment.NewLine+
-                              Environment.NewLine ;
+            ////8
+            //if (dataGridView1.Rows[7].Cells[2].Value.Equals(true))
+            //{
 
-           System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead);
+            //    text4 = "IF the application saves information such as credit card in log files and this is no properly encrypted" + Environment.NewLine +
+            //               "The application will not comply with requirement 3 and 4" + Environment.NewLine +
+            //                  "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+            //                  "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+            //                  "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
+            //    System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1 + text2 + text3 + text4 + text5 + text6 + text7);
 
-            //First answer
-           if (dataGridView1.Rows[0].Cells[2].Value.Equals(true))
-           {
-               text =
-                               "The Web Application does not fall directly into the main PCI-DSS Scope because it does not trasmit, process or store card holder data" + Environment.NewLine;
-               System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text);
-
-           }
-           if (dataGridView1.Rows[0].Cells[2].Value.Equals(true))
-           {
-               text =
-                               text =
-                           "The Web Application falls into the main PCI-DSS Scope" + Environment.NewLine +
-                           "We strongly recommend to read the OWASP Top 10 guidelines" + Environment.NewLine +
-                           "https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project#tab=OWASP_Top_10_for_2013" + Environment.NewLine +
-                           "The following checks are obligatory in order to become PCI-DSS complaint" + Environment.NewLine +
-                           "Requirement 3 is about Protection of Card Holder Data" + Environment.NewLine +
-                           "3.1 Keep cardholder data storage to a  minimum by implementing data retention" + Environment.NewLine +
-                           "and disposal policies, procedures and processes that include at least the following :" + Environment.NewLine +
-                            "-For all cardholder data (CHD) storage: Limiting data storage amount and  retention time to that which is " + Environment.NewLine +
-                            "required for legal, regulatory, and business requirements " + Environment.NewLine +
-                            "-Processes for secure deletion of data when no longer needed" + Environment.NewLine +
-                            "-Specific retention requirements for cardholder data " + Environment.NewLine +
-                            "-A quarterly process for identifying and securely deleting stored cardholder data that exceeds defined retention." +
-                            "3.2 Do not store sensitive authentication data after authorization (even if encrypted). If sensitive authentication" + Environment.NewLine +
-                            "data is received, render all data unrecoverable upon completion of the authorization process." + Environment.NewLine +
-
-                            Environment.NewLine ;
-               System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text);
-
-           }
-            //2nd
-            if (dataGridView1.Rows[1].Cells[2].Value.Equals(true))
-            {
-
-                text1 = "Authentication" + Environment.NewLine +
-                   "HTTP authentication should be implemented over SSL/TLS if the application has sensitive information" + Environment.NewLine +
-                   "Please check your application is using SSL (HTTPS) process to verify that HTTPS protocol has been implemented" + Environment.NewLine +
-                   "Read the following guidelines regarding secure authentication:" + Environment.NewLine +
-                    "https://www.owasp.org/index.php/Authentication_Cheat_Sheet" + Environment.NewLine +
-                    "https://www.owasp.org/index.php/Session_Management_Cheat_Sheet" + Environment.NewLine + Environment.NewLine;
-                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1);
-
-            }
-            if (dataGridView1.Rows[1].Cells[2].Value.Equals(true))
-            {
-
-                text1 = "Authentication" + Environment.NewLine +
-                   "HTTP authentication MUST be implemented over TLS. Right now you are NOT compliant with requirement 4 " + Environment.NewLine +
-                   "Requirement 4: Encrypt transmission of cardholder data across open, public networks"+ Environment.NewLine +
-                   "Please check your application is using SSL (HTTPS) process to verify that HTTPS protocol has been implemented" + Environment.NewLine +
-                   "Read the following guidelines regarding secure authentication:" + Environment.NewLine +
-                    "https://www.owasp.org/index.php/Authentication_Cheat_Sheet" + Environment.NewLine +
-                    "https://www.pcisecuritystandards.org/documents/PCI_DSS_v3.pdf" + Environment.NewLine +
-                    "https://www.owasp.org/index.php/Session_Management_Cheat_Sheet" + Environment.NewLine + Environment.NewLine;
-                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1);
-
-            }
-
-            //3rd
-
-            if (dataGridView1.Rows[2].Cells[2].Value.Equals(true))
-              {
-
-
-                  text2 = "Credit Card numbers, PAN's must be masked if displayed to web users for example : XXXX-XXXX-XXXX-3440" + Environment.NewLine +
-                          "Only the last 4 digits can be displayed back to the user" + Environment.NewLine + Environment.NewLine;
-                  System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1 + text2);
-
-              }
-
-            //4rd
-            if (dataGridView1.Rows[3].Cells[2].Value.Equals(true))
-            {
-
-                text3 =
-                             "According to PCI-DSS 3.2.1 Do not store the full contents of any track (from the magnetic stripe" + Environment.NewLine +
-                              "located on the back of a card, equivalent data contained on a chip, or elsewhere). This data is alternatively " + Environment.NewLine +
-                              "called full track, track, track 1, track 2, and magnetic-stripe data" + Environment.NewLine +
-                              "The purpose of the card validation code(CVV) is to protect card-not-present transactions—Internet" + Environment.NewLine +
-                               "or mail order/telephone order (MO/TO) transactions—where the consumer and the card are not present. " + Environment.NewLine +
-                               "3.4 Render PAN unreadable anywhere it is stored (including on portable digital media, backup media, and in logs) by" + Environment.NewLine +
-                               "using any of the following approaches:"+ Environment.NewLine +
-                               "-One-way hashes based on strong cryptography, (hash must be of the entire PAN)"+ Environment.NewLine +
-                               "-Truncation (hashing cannot be used to replace the truncated segment of PAN)" + Environment.NewLine +
-                               "-Index tokens and pads (pads must be securely stored)" + Environment.NewLine +
-                               "-Strong cryptography with associated key-management processes and procedures." + Environment.NewLine +
-                               "If your organization must store Card Holder data, it must be encrypted using strong cryptography, Truncation, Index tokens and securely stored pads" + Environment.NewLine +
-                               "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
-                               "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
-                               "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine +
-                               "If this data is stolen, malicious individuals can execute fraudulent Internet and MO/TO transactions.+" + Environment.NewLine + Environment.NewLine;
-
-                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1 + text2 + text3);
-
-            }
-
-            //5
-            if (dataGridView1.Rows[4].Cells[2].Value.Equals(true))
-                 {
-
-                     text4 = "Only certain Card Holder Data can be stored, please check requirement 3.2. Only if you must stored it also must be" + Environment.NewLine +
-                                "stored using strong Cryptography" + Environment.NewLine +
-                                   "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
-                                   "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
-                                   "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
-                     System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1 + text2 + text3 + text4);
-
-                 }
-            //6
-            if (dataGridView1.Rows[5].Cells[2].Value.Equals(true))
-            {
-
-               text5 = "Transmition of CHD " + Environment.NewLine +
-                            "HTTP authentication should be implemented over TLS and any information that contains CHD" + Environment.NewLine +
-                            "Please check your deployment process to verify that HTTPS protocol has been implemented properly" + Environment.NewLine +
-                            "https://owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet" + Environment.NewLine 
-                            + Environment.NewLine + Environment.NewLine;
-                        System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1);
-                     System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1 + text2 + text3 + text4 +text5);
-
-            }
-
-            //7
-            if (dataGridView1.Rows[6].Cells[2].Value.Equals(true))
-            {
-
-                text4 = "Transmission in clear text means the application is not compliant with requiremet 4. To  Verify that the application is not transmitting any of this data" + Environment.NewLine +
-                           "test this using WireShark" + Environment.NewLine +
-                              "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
-                              "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
-                              "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
-                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1 + text2 + text3 + text4 +text5 + text6 );
-
-            }
-
-            //8
-            if (dataGridView1.Rows[7].Cells[2].Value.Equals(true))
-            {
-
-                text4 = "IF the application saves information such as credit card in log files and this is no properly encrypted" + Environment.NewLine +
-                           "The application will not comply with requirement 3 and 4" + Environment.NewLine +
-                              "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
-                              "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
-                              "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
-                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead + text + text1 + text2 + text3 + text4 + text5 +text6 +text7);
-
-            }
+            //}
 
            #endregion
 
@@ -466,6 +360,177 @@ namespace OwaspPciToolkit
                 MessageBox.Show("Information has been processed-Open the report to find out analysis");
          
             }
+
+        private void OutPutCHDAnalysis()
+        {
+            
+
+            texthead = "Application Name:" + textBox1.Text.ToString() + Environment.NewLine +
+                              "Programming Language:" + comboBox1.Text.ToString() + Environment.NewLine + Environment.NewLine +
+                              "Card Holder Data - requirements regarding PCI-DSS" + Environment.NewLine +
+                              "In order to verify the veracity of your answers regarding these questions, check the tips and we strongly recommend the following steps:" + Environment.NewLine +
+                              "The application should be properly tested against Security vulnerabilities as described in the OWASP top ten" + Environment.NewLine +
+                              "It is recommended by the Security Council to use ASV(Approved Scanning Vendors) scanning tools" + Environment.NewLine +
+                              "Optional tools recommended here are : Wireshark,Nessus, OWASP ZAP, FindBugs, and using the IDE features to search on source code" + Environment.NewLine +
+                              "The most difficult part of the test is to verify that the application is indeed storing, trasmitting or process Card Holder Data" + Environment.NewLine +
+                              Environment.NewLine;
+
+            System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", texthead);
+            //Programming language
+            if (comboBox1.Text.ToString() == ".NET")
+            {
+                textL =
+                    "Please check OWASP Code Review Guidelines to learn more about vulnerabilities in .NET applications" + Environment.NewLine +
+                    "Old version Code Review Guide: https://www.owasp.org/images/2/2e/OWASP_Code_Review_Guide-V1_1.pdf" + Environment.NewLine +
+                     "New version Beta: https://www.owasp.org/index.php/OWASP_Code_review_V2_Table_of_Contents";
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead);
+
+            }
+
+            if (comboBox1.Text.ToString() == ".Java")
+            {
+                textL = "Please check OWASP Code Review Guidelines to learn more about vulnerabilities in Java applications" + Environment.NewLine +
+                         "Old version Code Review Guide: https://www.owasp.org/images/2/2e/OWASP_Code_Review_Guide-V1_1.pdf" + Environment.NewLine +
+                         "New version Beta: https://www.owasp.org/index.php/OWASP_Code_review_V2_Table_of_Contents";
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead);
+
+            }
+            //First answer
+            if (dataGridView1.Rows[0].Cells[2].Value.Equals(true))
+            {
+                text =
+                                "The Web Application does not fall directly into the main PCI-DSS Scope because it does not trasmit, process or store card holder data" + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text);
+
+            }
+            if (dataGridView1.Rows[0].Cells[2].Value.Equals(true))
+            {
+                text =
+                                text =
+                            "The Web Application falls into the main PCI-DSS Scope" + Environment.NewLine +
+                            "We strongly recommend to read the OWASP Top 10 guidelines" + Environment.NewLine +
+                            "https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project#tab=OWASP_Top_10_for_2013" + Environment.NewLine +
+                            "The following checks are obligatory in order to become PCI-DSS complaint" + Environment.NewLine +
+                            "Requirement 3 is about Protection of Card Holder Data" + Environment.NewLine +
+                            "3.1 Keep cardholder data storage to a  minimum by implementing data retention" + Environment.NewLine +
+                            "and disposal policies, procedures and processes that include at least the following :" + Environment.NewLine +
+                             "-For all cardholder data (CHD) storage: Limiting data storage amount and  retention time to that which is " + Environment.NewLine +
+                             "required for legal, regulatory, and business requirements " + Environment.NewLine +
+                             "-Processes for secure deletion of data when no longer needed" + Environment.NewLine +
+                             "-Specific retention requirements for cardholder data " + Environment.NewLine +
+                             "-A quarterly process for identifying and securely deleting stored cardholder data that exceeds defined retention." +
+                             "3.2 Do not store sensitive authentication data after authorization (even if encrypted). If sensitive authentication" + Environment.NewLine +
+                             "data is received, render all data unrecoverable upon completion of the authorization process." + Environment.NewLine +
+
+                             Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text);
+
+            }
+            //2nd
+            if (dataGridView1.Rows[1].Cells[2].Value.Equals(true))
+            {
+
+                text1 = "Authentication" + Environment.NewLine +
+                   "HTTP authentication should be implemented over SSL/TLS if the application has sensitive information" + Environment.NewLine +
+                   "Please check your application is using SSL (HTTPS) process to verify that HTTPS protocol has been implemented" + Environment.NewLine +
+                   "Read the following guidelines regarding secure authentication:" + Environment.NewLine +
+                    "https://www.owasp.org/index.php/Authentication_Cheat_Sheet" + Environment.NewLine +
+                    "https://www.owasp.org/index.php/Session_Management_Cheat_Sheet" + Environment.NewLine + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1);
+
+            }
+            if (dataGridView1.Rows[1].Cells[2].Value.Equals(true))
+            {
+
+                text1 = "Authentication" + Environment.NewLine +
+                   "HTTP authentication MUST be implemented over TLS. Right now you are NOT compliant with requirement 4 " + Environment.NewLine +
+                   "Requirement 4: Encrypt transmission of cardholder data across open, public networks" + Environment.NewLine +
+                   "Please check your application is using SSL (HTTPS) process to verify that HTTPS protocol has been implemented" + Environment.NewLine +
+                   "Read the following guidelines regarding secure authentication:" + Environment.NewLine +
+                    "https://www.owasp.org/index.php/Authentication_Cheat_Sheet" + Environment.NewLine +
+                    "https://www.pcisecuritystandards.org/documents/PCI_DSS_v3.pdf" + Environment.NewLine +
+                    "https://www.owasp.org/index.php/Session_Management_Cheat_Sheet" + Environment.NewLine + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1);
+
+            }
+
+            //3rd
+
+            if (dataGridView1.Rows[2].Cells[2].Value.Equals(true))
+            {
+
+
+                text2 = "Credit Card numbers, PAN's must be masked if displayed to web users for example : XXXX-XXXX-XXXX-3440" + Environment.NewLine +
+                        "Only the last 4 digits can be displayed back to the user" + Environment.NewLine + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1 + text2);
+
+            }
+
+            //4rd
+            if (dataGridView1.Rows[3].Cells[2].Value.Equals(true))
+            {
+
+                text3 =
+                             "According to PCI-DSS 3.2.1 Do not store the full contents of any track (from the magnetic stripe" + Environment.NewLine +
+                              "located on the back of a card, equivalent data contained on a chip, or elsewhere). This data is alternatively " + Environment.NewLine +
+                              "called full track, track, track 1, track 2, and magnetic-stripe data" + Environment.NewLine +
+                              "The purpose of the card validation code(CVV) is to protect card-not-present transactions—Internet" + Environment.NewLine +
+                               "or mail order/telephone order (MO/TO) transactions—where the consumer and the card are not present. " + Environment.NewLine +
+                               "3.4 Render PAN unreadable anywhere it is stored (including on portable digital media, backup media, and in logs) by" + Environment.NewLine +
+                               "using any of the following approaches:" + Environment.NewLine +
+                               "-One-way hashes based on strong cryptography, (hash must be of the entire PAN)" + Environment.NewLine +
+                               "-Truncation (hashing cannot be used to replace the truncated segment of PAN)" + Environment.NewLine +
+                               "-Index tokens and pads (pads must be securely stored)" + Environment.NewLine +
+                               "-Strong cryptography with associated key-management processes and procedures." + Environment.NewLine +
+                               "If your organization must store Card Holder data, it must be encrypted using strong cryptography, Truncation, Index tokens and securely stored pads" + Environment.NewLine +
+                               "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+                               "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+                               "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine +
+                               "If this data is stolen, malicious individuals can execute fraudulent Internet and MO/TO transactions.+" + Environment.NewLine + Environment.NewLine;
+
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1 + text2 + text3);
+
+            }
+
+            //5
+            if (dataGridView1.Rows[4].Cells[2].Value.Equals(true))
+            {
+
+                text4 = "Only certain Card Holder Data can be stored, please check requirement 3.2. Only if you must stored it also must be" + Environment.NewLine +
+                           "stored using strong Cryptography" + Environment.NewLine +
+                              "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1 + text2 + text3 + text4);
+
+            }
+            //6
+            if (dataGridView1.Rows[5].Cells[2].Value.Equals(true))
+            {
+
+                text5 = "Transmition of CHD " + Environment.NewLine +
+                             "HTTP authentication should be implemented over TLS and any information that contains CHD" + Environment.NewLine +
+                             "Please check your deployment process to verify that HTTPS protocol has been implemented properly" + Environment.NewLine +
+                             "https://owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet" + Environment.NewLine
+                             + Environment.NewLine + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1);
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1 + text2 + text3 + text4 + text5);
+
+            }
+
+            //7
+            if (dataGridView1.Rows[6].Cells[2].Value.Equals(true))
+            {
+
+                text4 = "Transmission in clear text means the application is not compliant with requiremet 4. To  Verify that the application is not transmitting any of this data" + Environment.NewLine +
+                           "test this using WireShark" + Environment.NewLine +
+                              "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis.txt", textL + texthead + text + text1 + text2 + text3 + text4 + text5 + text6);
+
+            }
+        }
 
         private bool ValidateCheckBox()
         {
@@ -531,7 +596,12 @@ namespace OwaspPciToolkit
             }
         }
 
+        private void CreatePDFReport()
+        {
+           
         
+        
+        }
 
         static DataTable ConvertListToDataTable(List<string[]> list)
         {
@@ -562,5 +632,53 @@ namespace OwaspPciToolkit
 
             return table;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CreatePDFReport();
+        }
+
+        #region Print reports
+        static void SamplePage1(PdfDocument document)
+        {
+            PdfPage page = document.AddPage();
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+            // HACK²
+            gfx.MUH = PdfFontEncoding.Unicode;
+            gfx.MFEH = PdfFontEmbedding.Default;
+
+            XFont font = new XFont("Verdana", 13, XFontStyle.Bold);
+
+            gfx.DrawString("The following paragraph was rendered using MigraDoc:", font, XBrushes.Black,
+              new XRect(100, 100, page.Width - 200, 300), XStringFormats.Center);
+
+            // You always need a MigraDoc document for rendering.
+            Document doc = new Document();
+            Section sec = doc.AddSection();
+            // Add a single paragraph with some text and format information.
+            Paragraph para = sec.AddParagraph();
+            para.Format.Alignment = ParagraphAlignment.Justify;
+            para.Format.Font.Name = "Times New Roman";
+            para.Format.Font.Size = 12;
+            para.Format.Font.Color = MigraDoc.DocumentObjectModel.Colors.DarkGray;
+            para.Format.Font.Color = MigraDoc.DocumentObjectModel.Colors.DarkGray;
+            para.AddText("Duisism odigna acipsum delesenisl ");
+            para.AddFormattedText("ullum in velenit", TextFormat.Bold);
+            para.AddText(" ipit iurero dolum zzriliquisis nit wis dolore vel et nonsequipit, velendigna " +
+              "auguercilit lor se dipisl duismod tatem zzrit at laore magna feummod oloborting ea con vel " +
+              "essit augiati onsequat luptat nos diatum vel ullum illummy nonsent nit ipis et nonsequis " +
+              "niation utpat. Odolobor augait et non etueril landre min ut ulla feugiam commodo lortie ex " +
+              "essent augait el ing eumsan hendre feugait prat augiatem amconul laoreet. ≤≥≈≠");
+            para.Format.Borders.Distance = "5pt";
+            para.Format.Borders.Color = Colors.Gold;
+
+            // Create a renderer and prepare (=layout) the document
+            MigraDoc.Rendering.DocumentRenderer docRenderer = new DocumentRenderer(doc);
+            docRenderer.PrepareDocument();
+
+            // Render the paragraph. You can render tables or shapes the same way.
+            docRenderer.RenderObject(gfx, XUnit.FromCentimeter(5), XUnit.FromCentimeter(10), "12cm", para);
+        }
+        #endregion
     }
 }
