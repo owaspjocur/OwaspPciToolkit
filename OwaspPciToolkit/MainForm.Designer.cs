@@ -50,11 +50,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.BSClarifications = new System.Windows.Forms.BindingSource(this.components);
-            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BSchd)).BeginInit();
@@ -186,6 +186,7 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Analyze Test";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView3
             // 
@@ -216,6 +217,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Analyze Development";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView2
             // 
@@ -238,6 +240,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Card Holder Data";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(859, 425);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(148, 38);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Create PDF report";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dataGridView1
             // 
@@ -271,16 +283,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1214, 511);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Tag = "Card Holder Data";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(859, 425);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(148, 38);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Create PDF report";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
             // 

@@ -50,6 +50,12 @@ namespace OwaspPciToolkit
             //custom events
             dataGridView1.CellClick += new DataGridViewCellEventHandler(dataGridView1_CellContentClick);
 
+            //PrintPDFReport();
+
+        }
+
+        private static void PrintPDFReport()
+        {
             //doc printing PDF
             #region print
             DateTime now = DateTime.Now;
@@ -72,7 +78,6 @@ namespace OwaspPciToolkit
             // ...and start a viewer
             Process.Start(filename);
             #endregion
-
         }
 
         private void DisplayGrid()
@@ -128,44 +133,103 @@ namespace OwaspPciToolkit
 
         private void DisplayGridDev()
         {
-            DevelopQuestions listQ = new DevelopQuestions();
-            List<string[]> QuestionsC = listQ.developQuestions().ToList();
-            DataTable table = ConvertListToDataTable(QuestionsC);
-            BSDev.DataSource = table;
-            dataGridView2.DataSource = BSDev;
-            dataGridView2.AutoResizeColumns();
-
-            dataGridView2.Columns[0].HeaderText = "Questions Development";
-
-            // Configure the details DataGridView so that its columns automatically 
-            // adjust their widths when the data changes.
-            dataGridView2.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView2.Columns.Add(CreateCheckBox());
-            dataGridView2.Columns.Add(CreateHyperLink());
+            #region Style
             dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridView2.ColumnCount = 2;
+            dataGridView2.Columns[0].Name = "Question";
+            dataGridView2.Columns[0].Width = 500;
+            dataGridView2.Columns[1].Width = 300;
+            dataGridView2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView2.Columns[1].Name = "Quick Tips";
+            dataGridView2.RowsDefaultCellStyle.BackColor = System.Drawing.Color.PapayaWhip;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Blue;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            dataGridView2.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
+            dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView2.AllowUserToResizeColumns = false;
+            #endregion
 
+            #region Grid Content
+            string[] row = new string[] { "Do you have a process for keeping all your framework components up to date?" };
+            dataGridView2.Rows.Add(row);
+            row = new string[] { "Is there a process to identify security vulnerabilities in the frameworks used?" };
+            dataGridView2.Rows.Add(row);
+            row = new string[] { "Does the developer team use industry standards and best practices such as OWASP, SANS or CERT?", "Do a text regex search on source code and database for credit card number format" };
+            dataGridView2.Rows.Add(row);
+            row = new string[] { "Does the development team use or incorporate security during the developement life-cycle?", "Do a SQL query seraching for credit card number values" };
+            dataGridView2.Rows.Add(row);
+            row = new string[] { "Does the developer team get proper training on OWASP top ten vulnerabilities?", "" };
+            dataGridView2.Rows.Add(row);
+            row = new string[] { "Do developers use a code review guidelines to implement proper security into the application?", "Use WireShark to capture packets and sniff transmission" };
+            dataGridView2.Rows.Add(row);
+            row = new string[] { "Do you use production data during development?(example restore a production database)", "Use Wireshark to sniff transmission within the network" };
+            dataGridView2.Rows.Add(row);
+            //row = new string[] { "Does the application have any form of debug log system?", "Do a search on the Web server on the folders containing the logs" };
+            //dataGridView1.Rows.Add(row);
+            DataGridViewCheckBoxColumn chkDev = new DataGridViewCheckBoxColumn();
+            dataGridView2.Columns.Add(chkDev);
+            chkDev.HeaderText = "YES";
+            chkDev.Name = "chkDev";
+            DataGridViewCheckBoxColumn chkDevNo = new DataGridViewCheckBoxColumn();
+            dataGridView2.Columns.Add(chkDevNo);
+            chkDevNo.HeaderText = "NO";
+            chkDevNo.Name = "chkDevNo";
+            #endregion
 
         }
 
         private void DisplayGridTest()
         {
-            testQuestions listQ = new testQuestions();
-            List<string[]> QuestionsC = listQ.testerQuestions().ToList();
-            DataTable table = ConvertListToDataTable(QuestionsC);
-            BSTest.DataSource= table;
-            dataGridView3.DataSource = BSTest;
-            dataGridView3.AutoResizeColumns();
-
-            dataGridView3.Columns[0].HeaderText = "Test Development";
-
-            // Configure the details DataGridView so that its columns automatically 
-            // adjust their widths when the data changes.
-            dataGridView3.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView3.Columns.Add(CreateCheckBox());
+            #region Style
             dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridView3.ColumnCount = 2;
+            dataGridView3.Columns[0].Name = "Question";
+            dataGridView3.Columns[0].Width = 500;
+            dataGridView3.Columns[1].Width = 300;
+            dataGridView3.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView3.Columns[1].Name = "Quick Tips";
+            dataGridView3.RowsDefaultCellStyle.BackColor = System.Drawing.Color.PapayaWhip;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Green;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            dataGridView3.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            dataGridView3.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView3.AllowUserToResizeColumns = false;
+            #endregion
+
+            #region Grid Content
+            string[] row = new string[] { "Is the test environment separated from development and production environment?" };
+            dataGridView3.Rows.Add(row);
+            row = new string[] { "Do administrators of the test environment have credentaials to production environment?" };
+            dataGridView3.Rows.Add(row);
+            row = new string[] { "Is the test environment in a DMZ zone and isolated properly from the production environment?", "Do a text regex search on source code and database for credit card number format" };
+            dataGridView3.Rows.Add(row);
+            row = new string[] { "Do the testers use test data exclusively during the testing of the application?", "Do a SQL query seraching for credit card number values" };
+            dataGridView3.Rows.Add(row);
+            row = new string[] { "Do the testers use production data such as real PAN's, CVV or names?", "" };
+            dataGridView3.Rows.Add(row);
+            row = new string[] { "Are any form of code analysis regularly executed?", "Use WireShark to capture packets and sniff transmission" };
+            dataGridView3.Rows.Add(row);
+            row = new string[] { "Are the penetration tests executed to verify any potential security vulnerability in the application?", "Use Wireshark to sniff transmission within the network" };
+            dataGridView3.Rows.Add(row);
+            //row = new string[] { "Does the application have any form of debug log system?", "Do a search on the Web server on the folders containing the logs" };
+            //dataGridView1.Rows.Add(row);
+            DataGridViewCheckBoxColumn chkDTest = new DataGridViewCheckBoxColumn();
+            dataGridView3.Columns.Add(chkDTest);
+            chkDTest.HeaderText = "YES";
+            chkDTest.Name = "chkDTest";
+            DataGridViewCheckBoxColumn chkDTestNo = new DataGridViewCheckBoxColumn();
+            dataGridView3.Columns.Add(chkDTestNo);
+            chkDTestNo.HeaderText = "NO";
+            chkDTestNo.Name = "chkDTestNo";
+            #endregion
 
 
 
@@ -218,6 +282,30 @@ namespace OwaspPciToolkit
             this.dataGridView1["ButtonColumn", 4].Value = "TIP 5";
             this.dataGridView1["ButtonColumn", 5].Value = "TIP 6";
             this.dataGridView1["ButtonColumn", 6].Value = "TIP 7";
+        }
+
+        private void CreateButtonDeveloper()
+        {
+
+            DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
+            btn.Name = "ButtonColumnDev";
+            btn.HeaderText = "TIPS";
+            btn.DataPropertyName = "c2";
+            //DO NOT SET THE UseColumnTextForButtonValue PROPERTY
+            //btn.UseColumnTextForButtonValue = true;
+            this.dataGridView2.Columns.Add(btn);
+
+
+            //You can change the button text in a specify cell by changing the
+            //value of that cell directly.
+            this.dataGridView2["ButtonColumn", 0].Value = "TIP 1";
+            this.dataGridView2["ButtonColumn", 1].Value = "TIP 2";
+            this.dataGridView2["ButtonColumn", 2].Value = "TIP 3";
+            this.dataGridView2["ButtonColumn", 3].Value = "TIP 4";
+            this.dataGridView2["ButtonColumn", 4].Value = "TIP 5";
+            this.dataGridView2["ButtonColumn", 5].Value = "TIP 6";
+            this.dataGridView2["ButtonColumn", 6].Value = "TIP 7";
+        
         }
 
         void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -532,6 +620,151 @@ namespace OwaspPciToolkit
             }
         }
 
+        private void OutPutCHDAnalysisTester()
+        {
+
+
+            texthead = "Application Name:" + textBox1.Text.ToString() + Environment.NewLine +
+                              "Programming Language:" + comboBox1.Text.ToString() + Environment.NewLine + Environment.NewLine +
+                              "Developer Environment and Process - requirements regarding PCI-DSS" + Environment.NewLine +                           
+                              Environment.NewLine;
+
+            System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", texthead);
+            //Programming language
+            if (comboBox1.Text.ToString() == ".NET")
+            {
+                textL =
+                    "Please check OWASP Code Review Guidelines to learn more about vulnerabilities in .NET applications" + Environment.NewLine +
+                    "Old version Code Review Guide: https://www.owasp.org/images/2/2e/OWASP_Code_Review_Guide-V1_1.pdf" + Environment.NewLine +
+                     "New version Beta: https://www.owasp.org/index.php/OWASP_Code_review_V2_Table_of_Contents";
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead);
+
+            }
+
+            if (comboBox1.Text.ToString() == ".Java")
+            {
+                textL = "Please check OWASP Code Review Guidelines to learn more about vulnerabilities in Java applications" + Environment.NewLine +
+                         "Old version Code Review Guide: https://www.owasp.org/images/2/2e/OWASP_Code_Review_Guide-V1_1.pdf" + Environment.NewLine +
+                         "New version Beta: https://www.owasp.org/index.php/OWASP_Code_review_V2_Table_of_Contents";
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead);
+
+            }
+            //First answer
+            if (dataGridView1.Rows[0].Cells[2].Value.Equals(true) || dataGridView1.Rows[0].Cells[2].Value.Equals(false))
+            {
+                text =
+             "To comply with Requirement 6: Develop and maintain secure systems and applications Production Environment must be separated" + Environment.NewLine +
+             "from the testing environment" + Environment.NewLine +
+              "6.4.1 Separate development/test environments from production environments, and enforce the separation with access controls."
+                + Environment.NewLine + Environment.NewLine +
+                "Development/test environments are separate from production environments with access control in place to enforce separation." + Environment.NewLine;
+                
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text);
+
+            }
+            
+            //2nd
+            if (dataGridView1.Rows[1].Cells[2].Value.Equals(true))
+            {
+                                text ="The application Development process is  in compliance with Requirement 6.4 :"+Environment.NewLine+
+                                    "-A separation of duties between personnel assigned to the development/test environments and those assigned to the production environment is a must to comply."+ Environment.NewLine+
+                                      "Please read how OpenSamm can help you understand and implement a Software Assurance Maturity Model"+Environment.NewLine+
+                                    "http://www.opensamm.org/";                
+                            
+                                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text +text1);
+
+            }
+            if (dataGridView1.Rows[1].Cells[2].Value.Equals(false))
+            {
+
+                   text ="The application Development process is NOT in compliance with Requirement 6.4 :"+Environment.NewLine+
+                                    "-A separation of duties between personnel assigned to the development/test environments and those assigned to the production environment is a must to comply."+ Environment.NewLine +
+                                    "Please read how OpenSamm can help you understand and implement a Software Assurance Maturity Model"+Environment.NewLine+
+                                    "http://www.opensamm.org/";
+                 
+                               
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text +text1 );
+
+            }
+
+            //3rd
+
+            if (dataGridView1.Rows[2].Cells[2].Value.Equals(true))
+            {
+
+
+                text2 = "Credit Card numbers, PAN's must be masked if displayed to web users for example : XXXX-XXXX-XXXX-3440" + Environment.NewLine +
+                        "Only the last 4 digits can be displayed back to the user" + Environment.NewLine + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text + text1 + text2);
+
+            }
+
+            //4rd
+            if (dataGridView1.Rows[3].Cells[2].Value.Equals(true))
+            {
+
+                text3 =
+                             "According to PCI-DSS 3.2.1 Do not store the full contents of any track (from the magnetic stripe" + Environment.NewLine +
+                              "located on the back of a card, equivalent data contained on a chip, or elsewhere). This data is alternatively " + Environment.NewLine +
+                              "called full track, track, track 1, track 2, and magnetic-stripe data" + Environment.NewLine +
+                              "The purpose of the card validation code(CVV) is to protect card-not-present transactions—Internet" + Environment.NewLine +
+                               "or mail order/telephone order (MO/TO) transactions—where the consumer and the card are not present. " + Environment.NewLine +
+                               "3.4 Render PAN unreadable anywhere it is stored (including on portable digital media, backup media, and in logs) by" + Environment.NewLine +
+                               "using any of the following approaches:" + Environment.NewLine +
+                               "-One-way hashes based on strong cryptography, (hash must be of the entire PAN)" + Environment.NewLine +
+                               "-Truncation (hashing cannot be used to replace the truncated segment of PAN)" + Environment.NewLine +
+                               "-Index tokens and pads (pads must be securely stored)" + Environment.NewLine +
+                               "-Strong cryptography with associated key-management processes and procedures." + Environment.NewLine +
+                               "If your organization must store Card Holder data, it must be encrypted using strong cryptography, Truncation, Index tokens and securely stored pads" + Environment.NewLine +
+                               "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+                               "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+                               "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine +
+                               "If this data is stolen, malicious individuals can execute fraudulent Internet and MO/TO transactions.+" + Environment.NewLine + Environment.NewLine;
+
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text + text1 + text2 + text3);
+
+            }
+
+            //5
+            if (dataGridView1.Rows[4].Cells[2].Value.Equals(true))
+            {
+
+                text4 = "Only certain Card Holder Data can be stored, please check requirement 3.2. Only if you must stored it also must be" + Environment.NewLine +
+                           "stored using strong Cryptography" + Environment.NewLine +
+                              "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text + text1 + text2 + text3 + text4);
+
+            }
+            //6
+            if (dataGridView1.Rows[5].Cells[2].Value.Equals(true))
+            {
+
+                text5 = "Transmition of CHD " + Environment.NewLine +
+                             "HTTP authentication should be implemented over TLS and any information that contains CHD" + Environment.NewLine +
+                             "Please check your deployment process to verify that HTTPS protocol has been implemented properly" + Environment.NewLine +
+                             "https://owasp.org/index.php/Transport_Layer_Protection_Cheat_Sheet" + Environment.NewLine
+                             + Environment.NewLine + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text + text1);
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text + text1 + text2 + text3 + text4 + text5);
+
+            }
+
+            //7
+            if (dataGridView1.Rows[6].Cells[2].Value.Equals(true))
+            {
+
+                text4 = "Transmission in clear text means the application is not compliant with requiremet 4. To  Verify that the application is not transmitting any of this data" + Environment.NewLine +
+                           "test this using WireShark" + Environment.NewLine +
+                              "Please refer to the following document for more info: https://www.pcisecuritystandards.org/pdfs/pci_fs_data_storage.pdf" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Cryptographic_Storage_Cheat_Sheet" + Environment.NewLine +
+                              "https://www.owasp.org/index.php/Top_10_2010-A7-Insecure_Cryptographic_Storage" + Environment.NewLine;
+                System.IO.File.WriteAllText(@"PCI-DSS_analysis_Developer.txt", textL + texthead + text + text1 + text2 + text3 + text4 + text5 + text6);
+
+            }
+        }
+
         private bool ValidateCheckBox()
         {
             //logic
@@ -680,5 +913,15 @@ namespace OwaspPciToolkit
             docRenderer.RenderObject(gfx, XUnit.FromCentimeter(5), XUnit.FromCentimeter(10), "12cm", para);
         }
         #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //OutPutCHDAnalysisDeveloper();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OutPutCHDAnalysisTester();
+        }
     }
 }

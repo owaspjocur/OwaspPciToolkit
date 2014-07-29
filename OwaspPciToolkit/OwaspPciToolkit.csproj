@@ -61,6 +61,9 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MigraDoc.DocumentObjectModel">
+      <HintPath>DLLs\MigraDoc.DocumentObjectModel.dll</HintPath>
+    </Reference>
     <Reference Include="MigraDoc.Rendering">
       <HintPath>DLLs\MigraDoc.Rendering.dll</HintPath>
     </Reference>
