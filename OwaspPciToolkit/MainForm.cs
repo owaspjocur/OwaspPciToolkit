@@ -17,6 +17,7 @@ using MigraDoc;
 using MigraDoc.Rendering;
 using MigraDoc.RtfRendering;
 using MigraDoc.DocumentObjectModel;
+using System.Diagnostics;
 
 
 namespace OwaspPciToolkit
@@ -44,6 +45,7 @@ namespace OwaspPciToolkit
             DisplayGridDev();
             DisplayGridTest();
             CreateButton();
+            CreateButtonDeveloper();
 
             button2.Enabled = true;
             button3.Enabled = false;
@@ -220,6 +222,7 @@ namespace OwaspPciToolkit
             btn.Name = "ButtonColumn";
             btn.HeaderText = "TIPS";
             btn.DataPropertyName = "c2";
+            btn.Width = 75;
             //DO NOT SET THE UseColumnTextForButtonValue PROPERTY
             //btn.UseColumnTextForButtonValue = true;
             this.dataGridView1.Columns.Add(btn);
@@ -241,22 +244,19 @@ namespace OwaspPciToolkit
 
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             btn.Name = "ButtonColumnDev";
-            btn.HeaderText = "TIPS";
-            btn.DataPropertyName = "c2";
+            btn.HeaderText = "Test";
+            btn.DataPropertyName = "c3";
             //DO NOT SET THE UseColumnTextForButtonValue PROPERTY
             //btn.UseColumnTextForButtonValue = true;
-            this.dataGridView2.Columns.Add(btn);
+            this.dataGridView1.Columns.Add(btn);
 
 
             //You can change the button text in a specify cell by changing the
             //value of that cell directly.
-            this.dataGridView2["ButtonColumn", 0].Value = "TIP 1";
-            this.dataGridView2["ButtonColumn", 1].Value = "TIP 2";
-            this.dataGridView2["ButtonColumn", 2].Value = "TIP 3";
-            this.dataGridView2["ButtonColumn", 3].Value = "TIP 4";
-            this.dataGridView2["ButtonColumn", 4].Value = "TIP 5";
-            this.dataGridView2["ButtonColumn", 5].Value = "TIP 6";
-            this.dataGridView2["ButtonColumn", 6].Value = "TIP 7";
+            //this.dataGridView2["ButtonColumn", 0].Value = "TIP 1";
+            this.dataGridView1["ButtonColumnDev", 1].Value = "Test";
+            //this.dataGridView2["ButtonColumn", 2].Value = "TIP 3";
+            
 
         }
 
@@ -283,6 +283,7 @@ namespace OwaspPciToolkit
 
         void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            #region TIPS
             //TIP 1
             if (e.ColumnIndex == 4 && e.RowIndex == 0)
             {
@@ -379,7 +380,17 @@ namespace OwaspPciToolkit
 
             }
 
-            //
+            #endregion
+
+            #region TEST
+            if (e.ColumnIndex == 5 && e.RowIndex == 1)
+            {
+                LoginTest lg = new LoginTest();
+                lg.ShowDialog();
+                            
+            }
+
+            #endregion
         }
         private void button1_Click(object sender, EventArgs e)
         {

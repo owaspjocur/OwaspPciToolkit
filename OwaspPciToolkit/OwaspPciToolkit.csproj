@@ -94,6 +94,12 @@
     <Compile Include="Domain\Clarifications.cs" />
     <Compile Include="Domain\DevelopQuestions.cs" />
     <Compile Include="Domain\testQuestions.cs" />
+    <Compile Include="LoginTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginTest.Designer.cs">
+      <DependentUpon>LoginTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="LoginTest.resx">
+      <DependentUpon>LoginTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +158,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Results\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

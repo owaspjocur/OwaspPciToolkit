@@ -150,7 +150,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1261, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1291, 28);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -236,7 +236,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1206, 482);
+            this.tabPage1.Size = new System.Drawing.Size(1255, 482);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Card Holder Data";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -257,7 +257,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(17, 24);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1169, 376);
+            this.dataGridView1.Size = new System.Drawing.Size(1220, 376);
             this.dataGridView1.TabIndex = 1;
             // 
             // button1
@@ -280,7 +280,7 @@
             this.tabControl1.Location = new System.Drawing.Point(16, 196);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1214, 511);
+            this.tabControl1.Size = new System.Drawing.Size(1263, 511);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Tag = "Card Holder Data";
             // 
@@ -288,7 +288,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1261, 731);
+            this.ClientSize = new System.Drawing.Size(1291, 731);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
